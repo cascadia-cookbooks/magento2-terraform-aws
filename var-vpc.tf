@@ -1,10 +1,3 @@
-data "external" "lpass" {
-    query = {
-        project = "Magento 2 Template"
-    }
-    program = ["bash", "${path.module}/lpass-data.sh"]
-}
-
 variable "region" {
     description = "AWS region"
     default = "us-west-2"
