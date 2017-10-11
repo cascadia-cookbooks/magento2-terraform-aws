@@ -13,5 +13,15 @@ resource "aws_db_instance" "mysql" {
     password = "${var.rds-db-password}"
   
     vpc_security_group_ids        = ["pass"]
-    db_subnet_security_group_name = "pass"
+    db_subnet_security_group_name = "${aws_db_subnet_group.default.name}"
+}
+
+# RDS subnet group
+resource "aws_db_subnet_group" "default" {
+    name = "main"
+    description = "Subnet group for RDS"
+    subnet_ids = ["pass"]
+    tags {
+        Name = "mage-db-subnet-group"
+    }
 }
