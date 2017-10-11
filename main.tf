@@ -1,4 +1,6 @@
 provider "aws" {
+    access_key = "${data.external.lpass.result.access_key}"
+    secret_key = "${data.external.lpass.result.secret_key}"
     region = "${var.region}"
 }
 
