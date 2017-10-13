@@ -5,7 +5,7 @@ resource "aws_internet_gateway" "default" {
 
 # Public subnets
 resource "aws_subnet" "public" {
-    count = 1
+    count = "${data.aws_availability_zones.available.names.count}"
     vpc_id = "${aws_vpc.default.id}"
     cidr_block = "${var.public_cidr[count.index]}"
     availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
@@ -27,7 +27,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route_table_association" "public" {
-    count = 1
+    count = "${data.aws_availability_zones.available.names.count}"
     subnet_id = "${element(aws_subnet.public.*.id, count.index)}"
     route_table_id = "${aws_route_table.public.id}"
 }
