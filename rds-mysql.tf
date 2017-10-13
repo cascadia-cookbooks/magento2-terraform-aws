@@ -9,7 +9,7 @@ resource "aws_db_instance" "mysql" {
     port = "${var.rds-port}"
   
     name     = "${var.rds-db-name}"
-    username = "${var.rds-db-username}"
+    username = "${var.rds-db-user}"
     password = "${var.rds-db-password}"
   
     vpc_security_group_ids        = ["${aws_security_group.mysql.id}"]
