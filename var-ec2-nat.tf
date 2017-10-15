@@ -7,3 +7,8 @@ data "aws_ami" "nat" {
     }
     owners = ["amazon"]
 }
+
+variable "ec2-nat-instance-type" {
+    description = "EC2 instance type for NAT"
+    default = "t2.micro"
+}
