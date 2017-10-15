@@ -10,3 +10,13 @@ resource "aws_subnet" "private" {
         group = "mage-sub"
     }
 }
+
+# Routing table
+resource "aws_route_table" "private" {
+    count = "${data.aws_availability_zones.available.names.count}"
+    vpc_id = "${aws_vpc.default.id}"
+    route {
+        cidr_block = "0.0.0.0/0"
+        instance_id = "pass"
+    }
+}
