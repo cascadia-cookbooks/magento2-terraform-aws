@@ -11,7 +11,7 @@ resource "aws_subnet" "private" {
     }
 }
 
-# Routing table
+# Routing table and association
 resource "aws_route_table" "private" {
     count = "${data.aws_availability_zones.available.names.count}"
     vpc_id = "${aws_vpc.default.id}"
@@ -19,4 +19,10 @@ resource "aws_route_table" "private" {
         cidr_block = "0.0.0.0/0"
         instance_id = "pass"
     }
+}
+
+resource "aws_route_table_association" "private" {
+    count = "${data.aws_availability_zones.available.names.count}"
+    subnet_id = "${element(aws_subnet.private.*.id, count.index)}"
+    route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
 }
