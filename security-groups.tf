@@ -25,3 +25,38 @@ resource "aws_security_group" "mysql" {
         group = "mage-sg"
     }
 }
+
+# NAT security group
+resource "aws_security_group" "nat" {
+    name = "magento-nat"
+    description = "Security group for NAT instance"
+    vpc_id = "${aws_vpc.default.id}"
+
+    # TODO: SSH access from whitelist
+
+    ingress {
+        from_port = 80
+        to_port = 80
+        portocol = "tcp"
+        cidr_blocks = "${var.private_cidr}"
+    }
+
+    ingress {
+        from_port = 443
+        to_port = 443
+        portocol = "tcp"
+        cidr_blocks = "${var.private_cidr}"
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = -1
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags {
+        Name = "magento-nat"
+        group = "mage-sg"
+    }
+}
