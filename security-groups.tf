@@ -33,8 +33,8 @@ resource "aws_security_group" "redis" {
     vpc_id = "${aws_vpc.default.id}"
 
     ingress {
-        from_port = "pass"
-        to_port = "pass"
+        from_port = "${var.elasticache-port}"
+        to_port = "${var.elasticache-port}"
         protocol = "tcp"
         security_groups = [
             "pass"
