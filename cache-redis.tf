@@ -4,7 +4,7 @@ resource "aws_elasticache_cluster" "redis" {
     node_type = "${var.elasticache-node-type}"
     port = "${var.elasticache-port}"
     num_cache_nodes = 1
-    parameter_group_name = "pass"
+    parameter_group_name = "${aws_elasticache_parameter_group.mage.name}"
     security_group_ids = ["${aws_security_group.redis.id}"]
     subnet_group_name = "${aws_elasticache_subnet_group.default.name}"
 }
@@ -14,4 +14,10 @@ resource "aws_elasticache_subnet_group" "default" {
     name = "mage-redis-subnet-group"
     description = "Subnet group for ElastiCache"
     subnet_ids = ["${aws_subnet.private.*.id}"]
+}
+
+# Parameter group
+resource "aws_elasticache_parameter_group" "mage" {
+    name = "mage-redis"
+    family = "redis3.2"
 }
