@@ -26,6 +26,34 @@ resource "aws_security_group" "mysql" {
     }
 }
 
+# ElastiCache security group
+resource "aws_security_group" "redis" {
+    name = "magento-redis"
+    description = "Security group for Redis ElastiCache cluster"
+    vpc_id = "${aws_vpc.default.id}"
+
+    ingress {
+        from_port = "pass"
+        to_port = "pass"
+        protocol = "tcp"
+        security_groups = [
+            "pass"
+        ]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = -1
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags {
+        Name = "magento-redis"
+        group = "mage-sg"
+    }
+}
+
 # NAT security group
 resource "aws_security_group" "nat" {
     name = "magento-nat"
