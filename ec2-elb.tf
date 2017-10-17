@@ -2,7 +2,7 @@
 resource "aws_elb" "app" {
     name = "pass"
     subnets = ["${aws_subnet.private.*.id}"]
-    security_groups = #["${aws_security_group.elb.id}"]
+    security_groups = ["${aws_security_group.elb.id}"]
 
     listener {
         instance_port = "${var.elb-instance-port}"
