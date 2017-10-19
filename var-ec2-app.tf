@@ -7,3 +7,12 @@ data "aws_ami" "rhel" {
     }
     owners = ["309956199498"] # NOTE: Official Red Hat account https://access.redhat.com/solutions/15356
 }
+
+variable "asg-app-name" {
+    default = "mage-asg-app"
+}
+
+variable "asg-app-instance-type" {
+    description = "EC2 instance type for app ASG"
+    default = "t2.micro"
+}
