@@ -1,6 +1,6 @@
 # Load Balancer
 resource "aws_elb" "app" {
-    name = "pass"
+    name = "${var.elb-name}"
     subnets = ["${aws_subnet.private.*.id}"]
     security_groups = ["${aws_security_group.elb.id}"]
 
