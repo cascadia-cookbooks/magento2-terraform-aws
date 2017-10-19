@@ -121,3 +121,31 @@ resource "aws_security_group" "elb" {
         group = "mage-sg"
     }
 }
+
+# EFS security group
+resource "aws_security_group" "efs" {
+    name = "magento-efs"
+    description = "Security group for EFS"
+    vpc_id = "${aws_vpc.default.id}"
+
+    ingress {
+        from_port = 2049
+        to_port = 2049
+        protocol = "tcp"
+        security_groups = [
+            "pass"
+        ]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = -1
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags {
+        Name = "magento-efs"
+        group = "mage-sg"
+    }
+}
