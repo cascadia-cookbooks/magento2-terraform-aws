@@ -16,3 +16,18 @@ variable "asg-app-instance-type" {
     description = "EC2 instance type for app ASG"
     default = "t2.micro"
 }
+
+variable "asg-health-check-grace-period" {
+    description = "Health check grace period"
+    default = 300
+}
+
+variable "asg-min-size" {
+    description = "Minimum number of instances in application ASG"
+    default = 1
+}
+
+variable "asg-max-size" {
+    description = "Maximum number of instances in application ASG"
+    default = 5
+}
