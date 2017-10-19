@@ -14,5 +14,6 @@ fi
 
 LPASS_AWS_ACCESS_KEY=$(lpass show "$PROJECT/AWS Credentials" --field=access_key)
 LPASS_AWS_SECRET_KEY=$(lpass show "$PROJECT/AWS Credentials" --field=secret_key)
+LPASS_APP_SSH_KEY=$(lpass show "$PROJECT/Bootstrap SSH Key" --field="Public Key")
 
-jq -n --arg access_key "$LPASS_AWS_ACCESS_KEY" --arg secret_key "$LPASS_AWS_SECRET_KEY" '{"access_key":$access_key, "secret_key":$secret_key}'
+jq -n --arg access_key "$LPASS_AWS_ACCESS_KEY" --arg secret_key "$LPASS_AWS_SECRET_KEY" --arg ssh_key "$LPASS_APP_SSH_KEY" '{"access_key":$access_key, "secret_key":$secret_key, "ssh_key":$ssh_key}'
