@@ -20,7 +20,7 @@ resource "aws_db_instance" "mysql" {
 resource "aws_db_subnet_group" "default" {
     name        = "main"
     description = "Subnet group for RDS"
-    subnet_ids  = ["pass"]
+    subnet_ids  = ["${aws_subnet.private.*.id}"]
     tags {
         Name = "mage-db-subnet-group"
     }
