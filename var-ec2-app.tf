@@ -1,5 +1,5 @@
 # Most recent RHEL 7 AMI
-data "aws_ami" "app" {
+data "aws_ami" "rhel" {
     most_recent = true
     filter {
         name = "name"
