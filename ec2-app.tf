@@ -5,7 +5,7 @@ resource "aws_launch_configuration" "app" {
     instance_type = "${var.asg-app-instance-type}"
 
     security_groups = ["${aws_security_group.app.id}"]
-    key_name = "pass"
+    key_name = "${aws_key_pair.asg-app.key_name}"
 
     user_data = "${data.template_file.user_data.rendered}"
 
