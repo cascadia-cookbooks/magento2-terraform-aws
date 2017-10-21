@@ -1,6 +1,6 @@
 # User-data template
 data "template_file" "user_data" {
-    template = "${file("templates/user_data.tpl")}"
+    template = "${file("${path.module}/templates/user_data.tpl")}"
 
     vars {
         mysql_endpoint = "${aws_db_instance.mysql.address}"
