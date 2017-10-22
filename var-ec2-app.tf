@@ -31,3 +31,8 @@ variable "asg-max-size" {
     description = "Maximum number of instances in application ASG"
     default = 5
 }
+
+variable "asg-user-data" {
+    description = "ASG user-data template override, see README for details"
+    default = ""
+}

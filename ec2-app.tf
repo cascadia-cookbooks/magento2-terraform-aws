@@ -7,7 +7,7 @@ resource "aws_launch_configuration" "app" {
     security_groups = ["${aws_security_group.app.id}"]
     key_name = "${aws_key_pair.asg-app.key_name}"
 
-    user_data = "${data.template_file.user_data.rendered}"
+    user_data = "${coalesce(var.asg-user-data, data.template_file.user_data.rendered)}"
 
     lifecycle {
         create_before_destroy = true
